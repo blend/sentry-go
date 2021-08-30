@@ -177,6 +177,7 @@ type Event struct {
 
 	// Experimental: This is part of a beta feature of the SDK. The fields below
 	// are only relevant for transactions.
+	Title          string    `json:"title,omitempty"`
 	Type           string    `json:"type,omitempty"`
 	StartTimestamp time.Time `json:"start_timestamp"`
 	Spans          []*Span   `json:"spans,omitempty"`
@@ -210,6 +211,7 @@ func (e *Event) MarshalJSON() ([]byte, error) {
 		// make sense to be sent for transactions. They shadow the respective
 		// fields in Event and are meant to remain nil, triggering the omitempty
 		// behavior.
+		Title          json.RawMessage `json:"title,omitempty"`
 		Type           json.RawMessage `json:"type,omitempty"`
 		StartTimestamp json.RawMessage `json:"start_timestamp,omitempty"`
 		Spans          json.RawMessage `json:"spans,omitempty"`
